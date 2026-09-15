@@ -41,7 +41,18 @@ color: #F5F5F7;
     </a><br><br>
     <a href="cardapio_pizzaria.pdf" download><img style="border-radius: 8px;" src="Cardapio.png" width="320" height="auto"></a><br>
     <a href="https://maps.app.goo.gl/airSk5oCFSFQewWk6" target="_blank"><img style="border-radius: 50px;" src="Onde.png" width="320" height="140"; border: 2px solid #000000;></a><br><br>
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arthur.m.fonseca@edu.senai.br" target="_blank"><img style="border-radius: 50px;" src="email.png" width="320" height="120"></a><br><br>
+   <a id="btn-email" href="#" target="_blank"><img style="border-radius: 50px;" src="email.png" width="320" height="120"></a><br><br>
+
+<a><script>
+  const emailLink = document.getElementById('btn-email');
+  const emailDestino = "arthur.m.fonseca@edu.senai.br";
+
+  if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+    emailLink.href = `mailto:${emailDestino}`;
+  } else {
+    emailLink.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailDestino}`;
+  }
+</script></a><br><br>
     <a href="https://www.instagram.com/volupiapizzaria/" target="_blank"><img style="border-radius: 50px;" src="instagram.png" width="120" height="120"></a>
    <a href="https://www.linkedin.com/in/arthur-matos-fonseca-084483437/" target="_blank"><img style="border-radius: 50px;" src="in.png" width="120" height="120"></a>
 <br></br>
