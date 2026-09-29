@@ -1,0 +1,75 @@
+header{
+    background-color: #0d5932;
+}
+header h1{
+    color: #fff;
+    font-size: 35px;
+    margin: 0px;
+    padding: 10px;
+    font-family: roboto-medium, sans-serif;
+    text-align: center;
+}
+header p{
+    color: #fff;
+    margin: 0px;
+    padding: 7px;
+    font-family:  Helvetica, sans-serif;
+    text-align: center;
+    font-size: 17px;
+}
+nav{
+    text-align: center;
+}
+nav a{
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-family: Comic Sans MS, sans-serif;
+}
+main{
+    padding: 20px;
+    width: 400px;
+    margin: 0 auto;
+}
+main p{
+    margin: 16px 0 0 0;
+    font-family: helvetica, sans-serif;
+    color: #333;
+}
+main h2{
+    text-align: center;
+    font-size: 30px;
+    font-family: roboto-medium, sans-serif;
+    color: #030303;
+}
+section{
+    background-color: #fff;
+    border: 2px solid #0d5932;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+section h3{
+    margin: 0;
+    font-family: roboto-medium, sans-serif;
+    color: #0d5932;
+    padding: 5px;
+    font-size: 20px;
+}
+section p1{
+    margin: 16px 0 0 0;
+    font-family: helvetica, sans-serif;
+    color: #333;
+}
+section p2{
+    margin: 16px 0 0 0;
+    font-family: helvetica, sans-serif;
+    color: #333;
+}
+footer{
+    background-color: #0d5932;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-family: Comic Sans MS, sans-serif;
+}
