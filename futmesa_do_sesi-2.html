@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Futmesa do SESI</title>
+<style>
+:root{--bg:#f2f5fa;--card:#fff;--ink:#172033;--muted:#667085;--blue:#2457d6;--blue2:#eaf0ff;--green:#16845b;--red:#bd3446;--line:#e0e6f0;--gold:#f1b94b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:1000px;margin:auto;padding:22px 14px 42px}.hero{background:linear-gradient(130deg,#173a91,#2867e8);color:white;padding:24px;border-radius:20px;margin-bottom:16px;position:relative;overflow:hidden}.hero:after{content:"⚽";position:absolute;right:18px;top:10px;font-size:68px;opacity:.2}.eyebrow{font-size:.78rem;letter-spacing:.13em;font-weight:800;opacity:.85}.hero h1{font-size:clamp(1.8rem,6vw,2.8rem);margin:4px 0}.hero p{margin:0;opacity:.9;max-width:640px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:17px;margin-bottom:14px;box-shadow:0 5px 18px #182b4b08}h2{font-size:1.12rem;margin:0 0 12px}h3{font-size:1rem;margin:0 0 9px}.sub{color:var(--muted);font-size:.9rem}.entry{display:flex;gap:8px;margin-bottom:9px}.entry input,.player input{font:inherit;min-width:0;width:100%;padding:10px 11px;border:1px solid #cbd4e3;border-radius:10px;background:white;color:var(--ink)}button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:10px 13px;cursor:pointer;background:#e8edf6;color:var(--ink)}button:focus-visible,input:focus-visible{outline:3px solid #91b1ff;outline-offset:2px}.primary{background:var(--blue);color:white}.win{background:#dff5e9;color:#126a48}.lose{background:#ffeaec;color:#a32637}.small{padding:7px 9px;font-size:.88rem}.table-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}.badge{font-size:.75rem;font-weight:800;border-radius:999px;padding:4px 8px;background:var(--blue2);color:var(--blue)}.team{border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0}.team.active{border:2px solid var(--blue);background:#f5f8ff}.team-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;font-weight:800}.team input{margin-top:6px}.vs{text-align:center;font-weight:900;color:var(--muted);font-size:.8rem;letter-spacing:.15em;margin:4px 0}.match-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.match-actions button{padding:12px 8px}.queue-list{display:flex;flex-direction:column;gap:8px}.qitem{display:flex;align-items:center;gap:9px;background:#f8faff;border:1px solid var(--line);padding:9px;border-radius:11px}.num{width:30px;height:30px;flex:0 0 30px;display:grid;place-items:center;border-radius:9px;background:#e7ecf6;font-weight:850}.qname{flex:1;min-width:0;overflow-wrap:anywhere}.qname small{display:block;color:var(--muted);font-weight:400}.qactions{display:flex;gap:5px}.empty{padding:20px 8px;text-align:center;color:var(--muted);border:1px dashed #cbd4e3;border-radius:12px}.notice{background:#fff8e7;border:1px solid #f4dda1;border-radius:12px;padding:12px;font-size:.92rem;margin-top:10px}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.history{max-height:180px;overflow:auto}.history div{padding:7px 0;border-bottom:1px solid var(--line);font-size:.9rem}.footer{text-align:center;color:var(--muted);font-size:.82rem;margin-top:8px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.hero{padding:20px}.hero:after{font-size:48px;right:10px}.card{padding:14px}.qitem{align-items:flex-start}.qactions{flex-wrap:wrap;justify-content:flex-end}}
+</style>
+</head>
+<body><main>
+<header class="hero"><div class="eyebrow">SESI • ESPORTE E INTEGRAÇÃO</div><h1>⚽ FUTMESA DO SESI</h1><p>Organize os desafios, monte as duplas e mantenha a fila girando. Quem perde vai para o fim!</p></header>
+
+<section class="card">
+  <h2>🎮 Partida da vez</h2>
+  <div class="sub" id="status">Cadastre os jogadores e monte as duplas para começar.</div>
+  <div class="grid" style="margin-top:13px">
+    <div class="team" id="teamA"><div class="team-title"><span>🔵 Dupla 1</span><span class="badge">TIME A</span></div><input id="a1" maxlength="60" placeholder="Nome do jogador 1"><input id="a2" maxlength="60" placeholder="Nome do jogador 2"></div>
+    <div class="team" id="teamB"><div class="team-title"><span>🔴 Dupla 2</span><span class="badge">TIME B</span></div><input id="b1" maxlength="60" placeholder="Nome do jogador 1"><input id="b2" maxlength="60" placeholder="Nome do jogador 2"></div>
+  </div>
+  <div class="match-actions">
+    <button id="wonA" class="win">🏆 Dupla 1 venceu</button>
+    <button id="wonB" class="win">🏆 Dupla 2 venceu</button>
+    <button id="lostA" class="lose">↘ Dupla 1 perdeu</button>
+    <button id="lostB" class="lose">↘ Dupla 2 perdeu</button>
+  </div>
+  <div class="notice" id="rule"><b>Regra da fila:</b> a dupla que perde sai da mesa e seus jogadores vão para o fim da fila. A dupla vencedora permanece. Se um jogador escolher alguém do fim da fila para formar dupla, essa pessoa entra na próxima partida.</div>
+</section>
+
+<div class="grid">
+  <section class="card">
+    <div class="table-head"><h2>👥 Cadastro de jogadores</h2><span class="badge" id="playerCount">0 jogadores</span></div>
+    <form id="addForm" class="entry"><input id="newPlayer" maxlength="60" placeholder="Nome do jogador" required><button class="primary">Adicionar</button></form>
+    <div class="sub" style="margin-bottom:10px">Adicione cada pessoa uma vez. Você pode editar os nomes na fila.</div>
+    <div id="queue" class="queue-list"></div>
+  </section>
+  <section class="card">
+    <div class="table-head"><h2>📋 Próximos da fila</h2><span class="badge" id="queueCount">0 na fila</span></div>
+    <p class="sub">Escolha alguém da fila para entrar no próximo jogo. A pessoa fica reservada e sai da fila até jogar.</p>
+    <div id="nextPicks" class="queue-list"></div>
+    <div class="toolbar" style="margin-top:12px"><button id="clearPicks">Cancelar escolhas</button><button id="reset" class="lose">Zerar tudo</button></div>
+  </section>
+</div>
+<section class="card"><div class="table-head"><h2>🧾 Últimos resultados</h2><button id="clearHistory" class="small">Limpar histórico</button></div><div id="history" class="history"><div class="sub">Nenhuma partida registrada ainda.</div></div></section>
+<p class="footer">Fila salva automaticamente neste navegador. Para manter o mesmo estado, use sempre o mesmo aparelho e navegador.</p>
+</main>
+<script>
+(() => {
+const KEY='futmesa-sesi-v1';
+let s={players:[],queue:[],reserved:[],match:{a:['',''],b:['','']},winner:null,history:[],nextId:1};
+try{const v=JSON.parse(localStorage.getItem(KEY));if(v&&Array.isArray(v.players)&&Array.isArray(v.queue))s={...s,...v};}catch(e){}
+const $=id=>document.getElementById(id);
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}};
+const clean=x=>String(x||'').trim();
+function player(id){return s.players.find(p=>p.id===id)}
+function nameOf(id){return player(id)?.name||''}
+function addPlayer(name){name=clean(name);if(!name)return;const p={id:s.nextId++,name};s.players.push(p);s.queue.push(p.id);save();render()}
+function currentIds(){return [...s.match.a,...s.match.b].filter(Boolean)}
+function syncMatchInputs(){[['a1','a',0],['a2','a',1],['b1','b',0],['b2','b',1]].forEach(([el,t,i])=>$(el).value=nameOf(s.match[t][i])||'')}
+function render(){
+$('playerCount').textContent=`${s.players.length} ${s.players.length===1?'jogador':'jogadores'}`;
+$('queueCount').textContent=`${s.queue.length} na fila`;
+$('status').textContent=currentIds().length===4?'Partida pronta! Registre o resultado quando terminar.':'Preencha as duas duplas. Você pode escolher jogadores da fila abaixo.';
+syncMatchInputs();
+$('queue').innerHTML=s.queue.length?s.queue.map((id,i)=>{const p=player(id);if(!p)return '';return `<div class="qitem"><span class="num">${i+1}</span><div class="qname"><input data-name="${id}" aria-label="Editar nome" value="${esc(p.name)}"></div><div class="qactions"><button class="small primary" data-pick="${id}" title="Reservar para o próximo jogo">Próximo jogo</button><button class="small" data-up="${id}" ${i===0?'disabled':''}>↑</button><button class="small" data-down="${id}" ${i===s.queue.length-1?'disabled':''}>↓</button><button class="small lose" data-del="${id}">✕</button></div></div>`}).join(''):'<div class="empty">Fila vazia. Adicione jogadores para começar.</div>';
+$('nextPicks').innerHTML=s.reserved.length?s.reserved.map((id,i)=>`<div class="qitem"><span class="num">★</span><div class="qname">${esc(nameOf(id))}<small>Reservado para o próximo jogo</small></div><button class="small" data-unpick="${id}">Cancelar</button></div>`).join(''):'<div class="empty">Nenhuma escolha reservada.</div>';
+$('history').innerHTML=s.history.length?s.history.slice(0,12).map(h=>`<div>${esc(h)}</div>`).join(''):'<div class="sub">Nenhuma partida registrada ainda.</div>';
+}
+function esc(x){return String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function setSlot(slot,id){const [team,idx]=slot.split(':');s.match[team][Number(idx)]=id?String(id):'';save();render()}
+function matchReady(){return s.match.a.every(Boolean)&&s.match.b.every(Boolean)}
+function outcome(winnerTeam){
+if(!matchReady()){alert('Preencha os quatro lugares das duas duplas antes de registrar o resultado.');return}
+const a=s.match.a.slice(),b=s.match.b.slice(),loser=winnerTeam==='a'?b:a,winner=winnerTeam==='a'?a:b;
+const winNames=winner.map(nameOf).join(' + '),loseNames=loser.map(nameOf).join(' + ');
+s.history.unshift(`${new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})} — ${winNames} venceram ${loseNames}.`);
+ // Vencedores permanecem na mesa; perdedores entram no fim da fila.
+ loser.forEach(id=>{if(id&&!s.queue.includes(Number(id))&&!s.reserved.includes(Number(id)))s.queue.push(Number(id))});
+ // Reservados para o próximo jogo devem ocupar os lugares disponíveis após a partida.
+ const reserves=s.reserved.slice();s.reserved=[];
+ s.match= {a:winnerTeam==='a'?a:['',''],b:winnerTeam==='b'?b:['','']};
+ const emptySlots=[];['a','b'].forEach(t=>s.match[t].forEach((id,i)=>{if(!id)emptySlots.push(`${t}:${i}`)}));
+ reserves.forEach(id=>{const slot=emptySlots.shift();if(slot)setSlotQuiet(slot,id);else s.queue.unshift(id)});
+ save();render();
+}
+function setSlotQuiet(slot,id){const [team,idx]=slot.split(':');s.match[team][Number(idx)]=String(id)}
+$('addForm').addEventListener('submit',e=>{e.preventDefault();addPlayer($('newPlayer').value);$('newPlayer').value='';$('newPlayer').focus()});
+$('queue').addEventListener('change',e=>{const id=Number(e.target.dataset.name);if(!id)return;const p=player(id);if(p){p.name=clean(e.target.value)||'Sem nome';save();render()}});
+$('queue').addEventListener('click',e=>{
+const b=e.target.closest('button');if(!b)return;
+if(b.dataset.pick){const id=Number(b.dataset.pick);if(s.reserved.includes(id))return;if(s.reserved.length>=2){alert('Você pode reservar até duas pessoas para o próximo jogo.');return}if(currentIds().includes(String(id))){alert('Essa pessoa já está jogando.');return}s.queue=s.queue.filter(x=>x!==id);s.reserved.push(id)}
+if(b.dataset.up||b.dataset.down){const id=Number(b.dataset.up||b.dataset.down),i=s.queue.indexOf(id),j=b.dataset.up?i-1:i+1;if(i>=0&&j>=0&&j<s.queue.length)[s.queue[i],s.queue[j]]=[s.queue[j],s.queue[i]]}
+if(b.dataset.del){const id=Number(b.dataset.del);s.queue=s.queue.filter(x=>x!==id);s.reserved=s.reserved.filter(x=>x!==id);s.players=s.players.filter(p=>p.id!==id);for(const t of ['a','b'])s.match[t]=s.match[t].map(x=>Number(x)===id?'':x)}
+save();render();
+});
+$('nextPicks').addEventListener('click',e=>{const b=e.target.closest('button[data-unpick]');if(!b)return;const id=Number(b.dataset.unpick);s.reserved=s.reserved.filter(x=>x!==id);s.queue.unshift(id);save();render()});
+[['a1','a',0],['a2','a',1],['b1','b',0],['b2','b',1]].forEach(([id,t,i])=>$(id).addEventListener('change',e=>{
+const val=clean(e.target.value);
+const p=s.players.find(p=>p.name.toLowerCase()===val.toLowerCase());
+if(!val){s.match[t][i]=''}else if(p){s.queue=s.queue.filter(x=>x!==p.id);s.reserved=s.reserved.filter(x=>x!==p.id);s.match[t][i]=String(p.id)}
+else{const fresh={id:s.nextId++,name:val};s.players.push(fresh);s.match[t][i]=String(fresh.id);s.queue=s.queue.filter(x=>x!==fresh.id)}
+save();render();
+}));
+$('wonA').addEventListener('click',()=>outcome('a'));$('lostB').addEventListener('click',()=>outcome('a'));
+$('wonB').addEventListener('click',()=>outcome('b'));$('lostA').addEventListener('click',()=>outcome('b'));
+$('clearPicks').addEventListener('click',()=>{s.reserved.forEach(id=>s.queue.unshift(id));s.reserved=[];save();render()});
+$('clearHistory').addEventListener('click',()=>{s.history=[];save();render()});
+$('reset').addEventListener('click',()=>{if(confirm('Zerar jogadores, fila, partida e histórico?')){s={players:[],queue:[],reserved:[],match:{a:['',''],b:['','']},winner:null,history:[],nextId:1};save();render()}});
+render();
+})();
+</script></body></html>
