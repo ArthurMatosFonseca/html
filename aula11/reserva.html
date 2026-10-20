@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reserva de mesa — Cafeteria Grão Dourado</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <h1>☕ Cafeteria Grão Dourado</h1>
+  <h2>Reserve sua mesa</h2>
+  <p>Campos marcados com * são obrigatórios.</p>
+
+  <!-- action: para onde os dados vão | method: como eles vão -->
+<form action="https://formsubmit.co/Arthur.m.fonseca@edu.senai.br" method="POST">
+</form>
+    <!-- GRUPO 1: dados da pessoa -->
+    <fieldset>
+      <legend>Seus dados</legend>
+
+      <p>
+        <label for="nome">Nome completo *</label>
+        <input class="campo" type="text" id="nome" name="nome" autocomplete="name" minlength="3" required>
+      </p>
+
+      <p>
+        <label for="email">E-mail *</label>
+        <input class="campo" type="email" id="email" name="email" autocomplete="email" placeholder="voce@email.com" required>
+      </p>
+
+      <p>
+        <label for="telefone">Celular</label>
+        <input class="campo" type="tel" id="telefone" name="telefone" autocomplete="tel" placeholder="(11) 91234-5678">
+      </p>
+    </fieldset>
+
+    <!-- GRUPO 2: dados da reserva -->
+    <fieldset>
+      <legend>Sua reserva</legend>
+
+      <p>
+        <label for="data">Data *</label>
+        <input class="campo" type="date" id="data" name="data" required>
+      </p>
+
+      <p>
+        <label for="horario">Horário * (das 7h às 19h)</label>
+        <input class="campo" type="time" id="horario" name="horario" min="07:00" max="19:00" required>
+      </p>
+
+      <p>
+        <label for="pessoas">Número de pessoas *</label>
+        <input class="campo" type="number" id="pessoas" name="pessoas" min="1" max="12" value="2" required>
+      </p>
+
+      <p>
+        <label for="ambiente">Ambiente</label>
+        <select class="campo" id="ambiente" name="ambiente">
+          <option value="salao">Salão principal</option>
+          <option value="varanda">Varanda</option>
+          <option value="kids">Perto da área kids</option>
+        </select>
+      </p>
+    </fieldset>
+
+    <!-- GRUPO 3: escolha única (radio) — todos com o MESMO name -->
+    <fieldset>
+      <legend>É uma ocasião especial?</legend>
+
+      <p>
+        <input type="radio" id="ocasiao-nao" name="ocasiao" value="nenhuma" checked>
+        <label for="ocasiao-nao">Não, só um café mesmo</label>
+      </p>
+      <p>
+        <input type="radio" id="ocasiao-aniversario" name="ocasiao" value="aniversario">
+        <label for="ocasiao-aniversario">Aniversário</label>
+      </p>
+      <p>
+        <input type="radio" id="ocasiao-trabalho" name="ocasiao" value="trabalho">
+        <label for="ocasiao-trabalho">Reunião de trabalho</label>
+      </p>
+    </fieldset>
+
+    <!-- GRUPO 4: várias escolhas (checkbox) e texto livre -->
+    <fieldset>
+      <legend>Precisa de algo a mais?</legend>
+
+      <p>
+        <input type="checkbox" id="extra-cadeirinha" name="extras" value="cadeirinha">
+        <label for="extra-cadeirinha">Cadeirinha para criança</label>
+      </p>
+      <p>
+        <input type="checkbox" id="extra-acessivel" name="extras" value="acessivel">
+        <label for="extra-acessivel">Mesa com acesso para cadeira de rodas</label>
+      </p>
+      <p>
+        <input type="checkbox" id="extra-tomada" name="extras" value="tomada">
+        <label for="extra-tomada">Mesa perto de tomada</label>
+      </p>
+
+      <p>
+        <label for="observacoes">Observações</label><br>
+        <textarea class="campo" id="observacoes" name="observacoes" rows="4" cols="40"
+                  placeholder="Ex.: vamos levar um bolo de aniversário"></textarea>
+      </p>
+    </fieldset>
+
+    <p>
+      <input type="checkbox" id="promocoes" name="promocoes" value="sim">
+      <label for="promocoes">Quero receber as promoções da semana por e-mail</label>
+    </p>
+
+    <!-- BOTÕES -->
+    <p>
+      <button class="btn-enviar" type="submit">Reservar mesa</button>
+      <button class="btn-limpar" type="reset">Limpar</button>
+    </p>
+
+  </form>
+
+</body>
+</html>

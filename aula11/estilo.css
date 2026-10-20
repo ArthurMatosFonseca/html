@@ -1,0 +1,135 @@
+/* estilo.css — Cafeteria Grão Dourado
+   Usado por: reserva.html, reserva-formsubmit.html e obrigado.html */
+
+/* Faz width e padding caberem juntos (aula do Box Model) */
+* {
+  box-sizing: border-box;
+}
+
+/* Página */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #2b2d42;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  line-height: 1.5;
+}
+
+/* Títulos */
+h1 {
+  border-bottom: 4px solid #f68e36;
+  padding-bottom: 8px;
+}
+
+h2 {
+  color: #1a73c9;
+}
+
+.centro {
+  text-align: center;
+}
+
+/* Grupos do formulário */
+fieldset {
+  background-color: white;
+  border: 2px solid #369ef6;
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+}
+
+legend {
+  color: #1a73c9;
+  font-weight: bold;
+  padding: 0 8px;
+}
+
+/* Rótulos: o cursor de mãozinha mostra que clicar no texto marca o campo */
+label {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Campos de texto, data, número, lista e área de texto (class="campo") */
+.campo {
+  width: 100%;
+  padding: 10px;
+  margin-top: 4px;
+  border: 2px solid #b8c4d6;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.campo:hover {
+  border-color: #369ef6;
+}
+
+.campo:focus {
+  border-color: #1a73c9;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(54, 158, 246, 0.35);
+}
+
+/* Botões */
+button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-enviar {
+  background-color: #f68e36;
+  color: #2b2d42;
+}
+
+.btn-enviar:hover {
+  background-color: #fab875;
+  transform: translateY(-2px);
+}
+
+.btn-limpar {
+  background-color: #e3e7ee;
+  color: #2b2d42;
+}
+
+.btn-limpar:hover {
+  background-color: #cfd6e2;
+}
+
+/* Contorno para quem navega pelo teclado */
+button:focus-visible {
+  outline: 3px solid #1a73c9;
+  outline-offset: 2px;
+}
+
+/* Página de obrigado */
+.destaque {
+  background-color: #fff6ec;
+  border-left: 5px solid #f68e36;
+  border-radius: 4px;
+  padding: 12px 16px;
+}
+
+code {
+  background-color: #fff1e3;
+  color: #a84b07;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+a {
+  color: #1a73c9;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #b85309;
+}
