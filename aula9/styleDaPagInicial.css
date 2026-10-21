@@ -1,0 +1,27 @@
+body {
+    background-color: #17d4d4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+
+header {
+    background-color: #ccc019;
+    border: 2px solid #000000;
+    padding: 1rem;
+    text-align: center;
+    font-family: roboto-medium, sans-serif;
+}
+.botao {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1a73c9;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;                              /* CURSOR */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-out;
+}

@@ -1,0 +1,98 @@
+/* ===== Página ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #2b2d42;
+}
+main {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+h1, h2 {
+  color: #1a73c9;
+}
+/* ===== Cards ===== */
+.card {
+  background-color: #ffffff;
+  border: 2px solid #fab875;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.25s ease,             /* TRANSITION */
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+}
+.card h4 {
+  margin: 0 0 4px;
+  color: #1a73c9;
+  font-size: 1.15em;
+  transition: color 0.25s ease;
+}
+.card p {
+  margin: 0 0 12px;
+  color: #5c6075;
+}
+.preco {
+  font-weight: bold;
+  color: #1a73c9;
+  margin-right: 12px;
+}
+.card:hover {                                   /* HOVER */
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(43, 45, 66, 0.18);
+  border-color: #f68e36;
+}
+.card:hover h4 {                                /* HOVER no pai muda o filho */
+  color: #b85309;
+}
+/* ===== Botões ===== */
+.botao {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1a73c9;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;                              /* CURSOR */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-out;
+}
+.botao:hover {
+  background-color: #f68e36;
+  color: #2b2d42;
+  transform: translateY(-2px);
+}
+.botao:focus-visible {                          /* FOCO pelo teclado */
+  outline: 3px solid #1a73c9;
+  outline-offset: 3px;
+}
+.botao:disabled {
+  background-color: #c3c7d0;
+  cursor: not-allowed;                          /* CURSOR de bloqueado */
+  transform: none;
+}
+/* ===== Formulário ===== */
+.contato {
+  margin-top: 40px;
+}
+label {
+  font-weight: bold;
+}
+.campo {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 6px 0 12px;
+  padding: 12px 14px;
+  border: 2px solid #fab875;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.campo:focus {                                  /* FOCUS */
+  outline: none;
+  border-color: #1a73c9;
+  box-shadow: 0 0 0 4px rgba(54, 158, 246, 0.3);
+}

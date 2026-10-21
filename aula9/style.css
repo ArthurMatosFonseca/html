@@ -4,6 +4,7 @@ ESTÁ LIGADO AO INDEX.HTML*/
 body {
     background-color: #f5f5dc;
     margin:0;
+    text-align: center;
 }
 header {
      background-color: #16c5b6;
@@ -33,6 +34,7 @@ h3 {
    margin: 0px;
    padding: 10px;
 }
+
 
 
 
