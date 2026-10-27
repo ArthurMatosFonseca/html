@@ -1,0 +1,973 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Humano ou IA</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=EB+Garamond:wght@500;600;700&display=swap">
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ética e consciência</title>
+<!-- Novas fontes: Space Grotesk (geométrica/tech) e Plus Jakarta Sans (interface moderna) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #e6f0f9;
+  --surface: #f3e3e3;
+  --surface-hover: #d4e9ff;
+  --ink: #0F172A;
+  --muted: #64748B;
+  --line: #E2E8F0;
+
+  /* Cores de destaque tech e dinâmicas */
+  --primary: #6987fc;
+  --primary-soft: #EEF2FF;
+  --accent: #fda464;
+  --accent-soft: #FFF7ED;
+  --on-accent: #FFFFFF;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B0F19;
+    --surface: #131B2E;
+    --surface-hover: #1E293B;
+    --ink: #F8FAFC;
+    --muted: #94A3B8;
+    --line: #1E293B;
+
+    --primary: #6987fc;
+    --primary-soft: #1E1B4B;
+    --accent: #fda464;
+    --accent-soft: #431407;
+    --on-accent: #0B0F19;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.4);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0B0F19;
+  --surface: #131B2E;
+  --surface-hover: #1E293B;
+  --ink: #F8FAFC;
+  --muted: #94A3B8;
+  --line: #1E293B;
+
+  --primary: #6987fc;
+  --primary-soft: #1E1B4B;
+  --accent: #fda464;
+  --accent-soft: #431407;
+  --on-accent: #0B0F19;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.4);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font: 400 1rem/1.6 var(--font-body);
+  padding-inline: 16px;
+  padding-block: 0 64px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+p { margin: 0; }
+
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------------- Abas Superiores ---------------- */
+.abas {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  gap: 6px;
+  padding: 12px 0 10px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.aba {
+  flex: 1;
+  min-height: 42px;
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aba:hover:not([aria-current="page"]) {
+  color: var(--ink);
+  background: var(--surface-hover);
+}
+
+.aba[aria-current="page"] {
+  background: var(--surface);
+  color: var(--primary);
+  border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------------- Início (Hero & Módulos) ---------------- */
+.hero {
+  padding-block: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  background: var(--primary-soft);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 8vw, 3.25rem);
+  color: var(--ink);
+}
+
+.barra {
+  width: 54px;
+  height: 5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.lead {
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 36rem;
+}
+
+.modulos {
+  display: grid;
+  gap: 16px;
+  padding-block: 8px 28px;
+}
+
+.modulo {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modulo:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.modulo h2 {
+  font-size: 1.5rem;
+}
+
+.modulo p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.modulo .rotulo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Botões */
+.btn {
+  min-height: 46px;
+  padding: 10px 22px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: var(--primary);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.12s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+.btn.sec {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn.sec:hover {
+  background: var(--surface-hover);
+  border-color: var(--muted);
+}
+
+.sobre {
+  border-top: 1px solid var(--line);
+  padding-block: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.sobre strong {
+  color: var(--ink);
+}
+
+/* ---------------- Jogo e Dilemas ---------------- */
+.jogo {
+  padding-block: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.progresso-linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.trilho {
+  height: 8px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.trilho > i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 999px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contexto {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.situacao {
+  font-size: clamp(1.4rem, 5.5vw, 1.85rem);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.pergunta {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.opcoes {
+  display: grid;
+  gap: 12px;
+}
+
+.opcao {
+  min-height: 56px;
+  padding: 14px 18px;
+  text-align: left;
+  cursor: pointer;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.18s ease;
+}
+
+.opcao:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: var(--surface-hover);
+  transform: translateY(-1px);
+}
+
+.opcao:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.opcao:disabled {
+  cursor: default;
+  color: var(--ink);
+}
+
+.opcao.escolha {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 4px 9px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.tag.sug {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.tag.eu {
+  background: var(--primary);
+  color: #FFFFFF;
+}
+
+/* Feedback do Dilema */
+.retorno {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.retorno h3 {
+  font-size: 1.25rem;
+  color: var(--ink);
+}
+
+.retorno .veredito {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--primary);
+}
+
+.retorno p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.retorno .btn {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+/* ---------------- Resultado ---------------- */
+.resultado h2 {
+  font-size: clamp(1.6rem, 6vw, 2.2rem);
+}
+
+.resumo {
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.tabela-box {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 0.9rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+th {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--surface-hover);
+}
+
+tr:last-child td { border-bottom: 0; }
+
+.nota {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.acoes {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.carta {
+  border-left: 4px solid var(--primary);
+  background: var(--primary-soft);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 16px;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ---------------- Guia ---------------- */
+.guia {
+  padding-block: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.guia h2 {
+  font-size: clamp(1.6rem, 6vw, 2.2rem);
+}
+
+.dicas {
+  display: grid;
+  gap: 14px;
+}
+
+.dica {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dica h3 {
+  font-size: 1.35rem;
+  color: var(--ink);
+}
+
+.dica p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.dica .pratica {
+  color: var(--ink);
+  font-size: 0.925rem;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+}
+
+.dica .pratica b {
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  margin-right: 6px;
+}
+
+.fecho {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+  padding-block: 16px 0;
+  color: var(--primary);
+  text-wrap: balance;
+}
+
+.rodape {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 0.8125rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .modulos { grid-template-columns: 1fr 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trilho > i,
+  .btn,
+  .opcao,
+  .retorno {
+    transition: none;
+    animation: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="abas" aria-label="Seções do site">
+    <button class="aba" type="button" data-aba="inicio">Início</button>
+    <button class="aba" type="button" data-aba="jogo">Jogo</button>
+    <button class="aba" type="button" data-aba="guia">Guia</button>
+  </nav>
+
+  <!-- INÍCIO -->
+  <main id="aba-inicio">
+    <section class="hero">
+      <p class="eyebrow">Semana da Biblioteca 2026</p>
+      <h1>O que é ético no mundo da inteligência artificial?</h1>
+      <div class="barra" aria-hidden="true"></div>
+      <p class="lead">Enfrente 8 situações e decida: <b>a IA pode tomar essa decisão? Quem deve responder por elas? </b></p>
+    </section>
+    <section class="modulos" aria-label="Módulos">
+      <article class="modulo">
+        <p class="rotulo">Módulo 1</p>
+        <h2>Jogo das situações</h2>
+        <p><span class="js-total">8</span> Algumas situações do dia a dia que requerem reflexão ética, decida o que é adqueado ou não para </p>
+        <button class="btn" type="button" data-ir="jogo">Jogar</button>
+      </article>
+      <article class="modulo">
+        <p class="rotulo">Módulo 2</p>
+        <h2>Guia de uso da IA</h2>
+        <p><span class="js-total-dicas">6</span> Habitos de uso consciente para serem seguidos para evitar demais problemas com a ferramenta.</p>
+        <button class="btn sec" type="button" data-ir="guia">Ler o guia</button>
+      </article>
+    </section>
+    <section class="sobre">
+      <p><strong>Como funciona.</strong> O jogo não tem resposta única. Cada situação traz um caminho sugerido e uma explicação para você pensar.</p>
+      <p>Não pedimos nome nem cadastro, e nada do que você escolhe é guardado.</p>
+    </section>
+  </main>
+
+  <!-- JOGO -->
+  <main id="aba-jogo" hidden>
+    <section class="jogo" id="quiz">
+      <div>
+        <div class="progresso-linha"><span id="progresso-texto">Dilema 1 de 8</span><span id="progresso-ctx"></span></div>
+        <div class="trilho" aria-hidden="true"><i id="progresso-barra"></i></div>
+      </div>
+      <p class="contexto" id="q-contexto"></p>
+      <h2 class="situacao" id="q-situacao" tabindex="-1"></h2>
+      <p class="pergunta" id="q-pergunta"></p>
+      <div class="opcoes" id="q-opcoes" role="group" aria-label="Quem deve decidir?"></div>
+      <section class="retorno" id="q-retorno" hidden aria-live="polite">
+        <h3 id="q-retorno-titulo" tabindex="-1">Para pensar</h3>
+        <p class="veredito" id="q-veredito"></p>
+        <p id="q-explicacao"></p>
+        <button class="btn" type="button" id="q-proximo">Próximo dilema</button>
+      </section>
+    </section>
+
+    <section class="jogo resultado" id="resultado" hidden>
+      <p class="eyebrow">Resultado</p>
+      <h2 id="r-titulo" tabindex="-1"></h2>
+      <p class="resumo" id="r-resumo"></p>
+      <div class="tabela-box">
+        <table>
+          <thead><tr><th scope="col">Dilema</th><th scope="col">Sua escolha</th><th scope="col">Caminho sugerido</th></tr></thead>
+          <tbody id="r-linhas"></tbody>
+        </table>
+      </div>
+      <p class="nota">Não existe placar certo ou errado. O que importa é saber explicar por que você escolheu cada caminho.</p>
+      <p class="carta">Na sexta, 30/10, a Carta para o Futuro é escrita à mão, sem IA. Pense nela: que profissional você quer ser?</p>
+      <div class="acoes">
+        <button class="btn" type="button" id="r-reiniciar">Jogar de novo</button>
+        <button class="btn sec" type="button" data-ir="guia">Ler o guia</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- GUIA -->
+  <main id="aba-guia" hidden>
+    <section class="guia">
+      <p class="eyebrow">Módulo 2</p>
+      <h2>Guia de uso consciente da IA</h2>
+      <p class="lead">Seis hábitos simples para usar a inteligência artificial sem abrir mão do seu raciocínio.</p>
+      <div class="dicas" id="dicas"></div>
+      <p class="fecho">A IA pode ajudar a decidir, mas quem responde pela decisão é você.</p>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    Semana da Biblioteca 2026 · 26 a 30 de outubro · Desenvolvimento de Sistemas, SENAI Suzano
+  </footer>
+</div>
+
+<script>
+/* ============================================================
+   COMO ADAPTAR PARA OUTRA TURMA QUE VAI ASSISTIR A APRESENTAÇÃO
+   Todo o conteúdo do site está nas duas listas abaixo (DILEMAS e DICAS).
+   Para criar uma nova versão, troque os textos e mantenha a estrutura.
+
+   DILEMAS: cada item tem
+     contexto   (rótulo curto, ex.: "Escola")
+     situacao   (o dilema, em uma ou duas frases)
+     pergunta   (a pergunta feita ao jogador)
+     sugerido   ("ia", "pessoa" ou "juntos")
+     explicacao (por que esse caminho é o sugerido)
+
+   DICAS: cada item tem titulo, texto e pratica.
+   O layout (CSS) e a lógica do jogo não precisam ser alterados.
+   ============================================================ */
+
+var OPCOES = {
+  ia: "Adequado",
+  pessoa: "Inadequado",
+  juntos: "Depende do contexto"
+};
+
+var DILEMAS = [
+  {
+    contexto: "Estudos",
+    situacao: "Você está com dificuldade para entender uma matéria. Em vez de pedir as respostas de um exercício, pede à IA que explique o conteúdo com exemplos e crie questões para você praticar antes da prova.",
+    pergunta: "O contexto de uso está correto?",
+    sugerido: "ia",
+    explicacao: "A IA está sendo usada para apoio de estudo, além de ajudar a compreender demais fatores que dependem do desempenho do aluno, sem substituir o esforço do mesmo"
+  },
+  {
+    contexto: "Redes Sociais",
+    situacao: "Para ganhar seguidores, você usa IA para criar uma imagem realista e falsa de um colega em uma situação humilhante e a publica sem o consentimento dele, alegando que é apenas uma brincadeira.",
+    pergunta: "O uso da IA foi adequado?",
+    sugerido: "pessoa",
+    explicacao:"A intenção de fazer humor não justifica expor outra pessoa ao constrangimento e a possíveis danos."
+  },
+  {
+    contexto: "Privacidade",
+    situacao: "Um amigo conta a você um problema pessoal em particular. Sem a autorização dele, você copia toda a conversa para uma IA e pede uma análise da personalidade dele, incluindo detalhes que permitem identificá-lo.",
+    pergunta: "Foi uma utilização correta da IA?",
+    sugerido: "pessoa",
+    explicacao: "Compartilhar informações pessoais de outra pessoa sem autorização viola sua privacidade e confiança, especialmente quando esses dados não são necessários."
+  },
+  {
+    contexto: "Vida Profissional",
+    situacao: "Você pede a uma IA que melhore seu currículo, organize suas habilidades e prepare você para uma entrevista de emprego, utilizando apenas informações verdadeiras sobre sua experiência.",
+    pergunta: "Quem escreve o texto?",
+    sugerido: "juntos",
+    explicacao: "O auxílio é legítimo, mas é necessário observar as regras específicas do processo seletivo e manter a autenticidade das informações."
+  },
+  {
+    contexto: "Religião",
+    situacao: "Você tem dúvidas sobre sua religião e pede a uma IA que compare diferentes crenças, explique suas tradições e apresente argumentos de cada perspectiva para ajudar você a refletir.",
+    pergunta: "O quão adequado é esse uso da IA?",
+    sugerido: "ia",
+    explicacao: "Depende do contexto, a pesquisa pode servir para ampliar o conhecimento religioso de quem está procurando sobre, mas as respostas precisam ser avaliadas de forma crítica, sem tratar a ferramenta como uma autoridadde definitiva sobre fé e demais valores religiosos"
+  },
+  {
+    contexto: "Informação",
+    situacao: "Durante uma discussão na internet, você pede à IA argumentos e estatísticas para defender sua opinião. A resposta parece convincente, mas você ainda não verificou as fontes antes de compartilhar o conteúdo.",
+    pergunta: "É correto utilizar a IA para defender um ponto?",
+    sugerido: "juntos",
+    explicacao:"A IA pode ajudar a organizar ideias, mas é essencial verificar a veracidade das informações antes de compartilhá-las, para evitar a propagação de desinformação."
+  },
+  {
+    contexto: "Arte",
+    situacao: "Um jovem utiliza IA para criar uma ilustração para um concurso escolar. ela cria a ideia, mas no concurso, não revela que usou a ferramenta",
+    pergunta: "isso é adequado a situação, mesmo com quem fez as imagens a mão, ou ela utilizou de recursos para fazer sua imagem?",
+    sugerido: "pessoa",
+    explicacao: "A IA ajuda a organizar ideias, mas usar de sua capacidade de geração de imagens para uso pessoal sem conhecimento público é antiético."
+  },
+  {
+    contexto: "inclusão",
+    situacao: "Numa escola, os professores usam um sistema de inclusão por ia para alunos com dificuldade de aprendizagem. Embora auxilie, vários pais relatam que o ensino por ia faz os filhos mais buscarem as respostas do que realmente aprenderem na plataforma, porém, o auxílio vai continuar.",
+    pergunta: "Foi um uso ético de IA ou foi só uma maneira de evitar de ensinar os alunos?",
+    sugerido: "juntos",
+    explicacao: "A ideia em si foi realmente boa, porém a execução foi mal feita. Podem manter o sistema, porém a ajuda do professor deve ser a principal forma de aprendizagem."
+  }
+];
+
+var DICAS = [
+  {
+    titulo: "Confira as fontes",
+    texto: "Respostas de IA podem parecer certas e estar erradas. Procure a informação em uma fonte confiável antes de usar.",
+    pratica: "Verifique um livro na biblioteca, busque a bibliotecária Luana caso haja alguma dúvida ou consulte um site confiável."
+  },
+  {
+    titulo: "Proteja seus dados",
+    texto: "O que você escreve em uma ferramenta de IA pode ser guardado. Não envie senhas, documentos, endereço ou fotos de outras pessoas.",
+    pratica: "Troque nomes e dados reais por exemplos."
+  },
+  {
+    titulo: "Diga quando usou IA",
+    texto: "Esconder o uso de IA engana quem lê. Contar como você usou mostra honestidade e ajuda o professor a avaliar o seu aprendizado.",
+    pratica: "Escreva uma linha, como: usei IA para revisar a ortografia."
+  },
+  {
+    titulo: "Pense primeiro",
+    texto: "Tente resolver sozinho antes de pedir ajuda. Quando usamos a IA para criar uma ideia, ela comete erros, não fala sobre o assunto em questão em algumas partes. A IA funciona melhor como apoio do que como substituta do seu raciocínio.",
+    pratica: "Escreva a sua ideia e só depois peça uma opinião."
+  },
+  {
+    titulo: "Respeite as pessoas",
+    texto: "Não publique conteúdo malicioso e sem consentimento. A IA não é desculpa para machucar alguém.",
+    pratica: "Antes de compartilhar, pergunte: isso pode machucar alguém?"
+  },
+  {
+    titulo: "A responsabilidade é sua",
+    texto: "A IA apenas sugere os caminhos, a decisão final é sempre do usuário, assuma a responsabilidade.",
+    pratica: "Em decisões importantes, ouça alguém de confiança."
+  }
+];
+
+/* ------------------------- lógica (não precisa mudar) ------------------------- */
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var abas = { inicio: $("aba-inicio"), jogo: $("aba-jogo"), guia: $("aba-guia") };
+  var botoesAba = document.querySelectorAll(".aba");
+  var total = DILEMAS.length;
+  var indice = 0;
+  var respostas = [];
+  var respondeu = false;
+
+  function mostrar(nome) {
+    if (!abas[nome]) { nome = "inicio"; }
+    Object.keys(abas).forEach(function (k) { abas[k].hidden = (k !== nome); });
+    botoesAba.forEach(function (b) {
+      if (b.getAttribute("data-aba") === nome) { b.setAttribute("aria-current", "page"); }
+      else { b.removeAttribute("aria-current"); }
+    });
+    window.scrollTo(0, 0);
+  }
+  function ir(nome) {
+    try { location.hash = nome; } catch (e) { /* sem hash */ }
+    mostrar(nome);
+  }
+  botoesAba.forEach(function (b) {
+    b.addEventListener("click", function () { ir(b.getAttribute("data-aba")); });
+  });
+  document.querySelectorAll("[data-ir]").forEach(function (b) {
+    b.addEventListener("click", function () { ir(b.getAttribute("data-ir")); });
+  });
+  window.addEventListener("hashchange", function () {
+    mostrar((location.hash || "").replace("#", ""));
+  });
+
+  document.querySelectorAll(".js-total").forEach(function (e) { e.textContent = total; });
+  document.querySelectorAll(".js-total-dicas").forEach(function (e) { e.textContent = DICAS.length; });
+
+  /* Guia */
+  var caixaDicas = $("dicas");
+  DICAS.forEach(function (d) {
+    var art = document.createElement("article");
+    art.className = "dica";
+    var h = document.createElement("h3"); h.textContent = d.titulo;
+    var p = document.createElement("p"); p.textContent = d.texto;
+    var pr = document.createElement("p"); pr.className = "pratica";
+    var b = document.createElement("b"); b.textContent = "Na prática";
+    pr.appendChild(b); pr.appendChild(document.createTextNode(d.pratica));
+    art.appendChild(h); art.appendChild(p); art.appendChild(pr);
+    caixaDicas.appendChild(art);
+  });
+
+  /* Jogo */
+  function mostrarPergunta() {
+    var d = DILEMAS[indice];
+    respondeu = false;
+    $("quiz").hidden = false;
+    $("resultado").hidden = true;
+    $("progresso-texto").textContent = "Dilema " + (indice + 1) + " de " + total;
+    $("progresso-barra").style.width = (indice / total * 100) + "%";
+    $("q-contexto").textContent = d.contexto;
+    $("q-situacao").textContent = d.situacao;
+    $("q-pergunta").textContent = d.pergunta;
+    $("q-retorno").hidden = true;
+
+    var caixa = $("q-opcoes");
+    caixa.innerHTML = "";
+    ["ia", "pessoa", "juntos"].forEach(function (chave) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "opcao";
+      btn.setAttribute("data-chave", chave);
+      var rotulo = document.createElement("span");
+      rotulo.textContent = OPCOES[chave];
+      var tags = document.createElement("span");
+      tags.className = "tags";
+      btn.appendChild(rotulo); btn.appendChild(tags);
+      btn.addEventListener("click", function () { escolher(chave); });
+      caixa.appendChild(btn);
+    });
+  }
+
+  function addTag(btn, classe, texto) {
+    var t = document.createElement("span");
+    t.className = "tag " + classe;
+    t.textContent = texto;
+    btn.querySelector(".tags").appendChild(t);
+  }
+
+  function escolher(chave) {
+    if (respondeu) { return; }
+    respondeu = true;
+    var d = DILEMAS[indice];
+    respostas[indice] = chave;
+    document.querySelectorAll("#q-opcoes .opcao").forEach(function (btn) {
+      var k = btn.getAttribute("data-chave");
+      btn.disabled = true;
+      if (k === chave) { btn.classList.add("escolha"); addTag(btn, "eu", "Sua escolha"); }
+      if (k === d.sugerido) { addTag(btn, "sug", "Caminho sugerido"); }
+    });
+    $("q-veredito").textContent = (chave === d.sugerido)
+      ? "Você chegou ao mesmo caminho que sugerimos."
+      : "Nossa sugestão era: " + OPCOES[d.sugerido].toLowerCase() + ". Outras visões são possíveis, o importante é saber explicar a sua.";
+    $("q-explicacao").textContent = d.explicacao;
+    $("q-proximo").textContent = (indice + 1 < total) ? "Próximo dilema" : "Ver resultado";
+    $("progresso-barra").style.width = ((indice + 1) / total * 100) + "%";
+    $("q-retorno").hidden = false;
+    $("q-retorno-titulo").focus();
+  }
+
+  function mostrarResultado() {
+    var iguais = 0;
+    var linhas = $("r-linhas");
+    linhas.innerHTML = "";
+    DILEMAS.forEach(function (d, i) {
+      if (respostas[i] === d.sugerido) { iguais++; }
+      var tr = document.createElement("tr");
+      [d.contexto + ": " + d.pergunta.replace(/\?$/, ""), OPCOES[respostas[i]], OPCOES[d.sugerido]].forEach(function (txt) {
+        var td = document.createElement("td"); td.textContent = txt; tr.appendChild(td);
+      });
+      linhas.appendChild(tr);
+    });
+    $("r-titulo").textContent = "Você concordou com " + iguais + " de " + total + " caminhos sugeridos";
+    $("r-resumo").textContent = iguais >= Math.ceil(total / 2)
+      ? "Você olha para cada situação antes de decidir quem deve decidir. Esse é o centro do tema da semana."
+      : "Muitas dessas situações têm mais de uma resposta razoável. Compare as suas escolhas com as sugeridas e converse com a turma.";
+    $("quiz").hidden = true;
+    $("resultado").hidden = false;
+    window.scrollTo(0, 0);
+    $("r-titulo").focus();
+  }
+
+  $("q-proximo").addEventListener("click", function () {
+    if (indice + 1 < total) { indice++; mostrarPergunta(); window.scrollTo(0, 0); $("q-situacao").focus(); }
+    else { mostrarResultado(); }
+  });
+  $("r-reiniciar").addEventListener("click", function () {
+    indice = 0; respostas = []; mostrarPergunta(); window.scrollTo(0, 0);
+  });
+
+  mostrarPergunta();
+  mostrar((location.hash || "").replace("#", ""));
+})();
+</script>
+</body>
+</html>
+
+
