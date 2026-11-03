@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mídia em HTML</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Como colocar diferentes tipos de mídia</h1>
+  <p>Vídeo, áudio, YouTube e PDF em uma única página.</p>
+
+  <!-- ===== VÍDEO ===== -->
+  <h2>Nosso vídeo</h2>
+  <video width="640" height="360" controls poster="imagem/poster.png" preload="metadata">
+    <source src="video/video_1_minuto.mp4" type="video/mp4">
+    <source src="video/cafe.webm" type="video/webm">
+    <track src="video/legenda.vtt" kind="subtitles" srclang="pt" label="Português" default>
+    Seu navegador não suporta vídeo.
+    <a href="video/cafe.mp4">Baixe o vídeo (MP4)</a>.
+  </video>
+
+  <!-- ===== ÁUDIO ===== -->
+  <h2>Nossa vinheta</h2>
+  <audio controls>
+    <source src="audio/jingle.mp3" type="audio/mpeg">
+    <source src="audio/jingle.ogg" type="audio/ogg">
+    Seu navegador não suporta áudio.
+    <a href="audio/jingle.mp3">Baixe a vinheta (MP3)</a>.
+  </audio>
+
+  <!-- ===== YOUTUBE ===== -->
+  <h2>Vídeo do YouTube</h2>
+  <!-- Troque SEU_ID_DO_VIDEO pelo código que aparece depois de "v=" no endereço do vídeo -->
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/4FJqCu2PE9s?si=Y09picd8f2pwHDIz&amp;start=29" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+  <!-- ===== PDF ===== -->
+  <h2>Exemplo de PDF</h2>
+  <object data="docs/cardapio_pizzaria.pdf" type="application/pdf" width="640" height="400">
+    Seu navegador não mostra PDF aqui.
+    <a href="docs/cardapio.pdf">Baixe o cardápio (PDF)</a>.
+    
+  </object>
+  <a href="../index.html"><button style="appearance: button; text-decoration: none; color: black; padding: 2px 6px; border: 2px solid gray; background-color: #efefef; border-radius: 100px;">Voltar ao Diretório</button></a><br>
+</body>
+</html>
