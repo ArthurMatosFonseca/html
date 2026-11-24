@@ -1,0 +1,397 @@
+/* ===== FONTE SORA (hospedada no projeto, sem depender de site externo) ===== */
+@font-face {
+  font-family: 'Sora';
+  src: url("fontes/sora-300.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sora';
+  src: url("fontes/sora-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sora';
+  src: url("fontes/sora-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sora';
+  src: url("fontes/sora-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===== BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Sora', sans-serif;
+  background-color: #06121e;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+i {
+  color: #fff;
+}
+
+/* Contorno para quem navega pelo teclado */
+a:focus-visible {
+  outline: 3px solid #f68e36;
+  outline-offset: 3px;
+}
+
+.conteiner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+/* ===== CABEÇALHO ===== */
+.fundo-inicio {
+  position: relative;
+}
+
+.fundo-inicio::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: linear-gradient(to bottom, #06121e1a, #07121D), url("imagem/fundo_principal.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  opacity: 0.9;
+}
+
+header {
+  width: 100%;
+}
+
+.cabecalho-conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cabecalho-icones {
+  display: flex;
+  gap: 14px;
+}
+
+.cabecalho-icones a:hover i {
+  animation: sobe-e-desce 0.8s infinite alternate;
+  color: #4074d4;
+}
+
+@keyframes sobe-e-desce {
+  from { transform: translateY(0) scale(1); }
+  to   { transform: translateY(-8px) scale(1.1); }
+}
+
+.cabecalho-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.cabecalho-botao {
+  border: 1px solid #fff;
+  padding: 8px 24px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: transparent;
+  transition: background-color 0.8s;
+}
+
+.cabecalho-botao:hover {
+  border: 1px solid #4074d4;
+  background-color: #4074d4;
+}
+
+/* ===== HERO (frase principal) ===== */
+.destaque {
+  color: #fff;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+
+.destaque h1 {
+  text-align: center;
+  line-height: 150%;
+  max-width: 940px;
+  font-size: 46px;
+}
+
+.destaque p {
+  text-align: center;
+  margin: 14px 0;
+}
+
+.botao-contato {
+  padding: 14px 28px;
+  color: #fff;
+  background-color: #4074d4;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 14px 0;
+}
+
+.botao-contato:hover {
+  animation: pulsa 0.8s alternate infinite;
+}
+
+@keyframes pulsa {
+  from { transform: scale(1); }
+  to   { transform: scale(1.07); }
+}
+
+/* ===== SOBRE ===== */
+.sobre {
+  background-color: #06121e;
+  color: #fff;
+  overflow: hidden;
+}
+
+.sobre-conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 34px 14px 64px 14px;
+}
+
+.sobre-conteudo img {
+  max-width: 570px;
+}
+
+.sobre-conteudo div {
+  flex: 1;
+}
+
+.sobre-descricao h2 {
+  font-size: 38px;
+  margin-bottom: 24px;
+}
+
+.sobre-descricao p {
+  margin-bottom: 14px;
+  line-height: 150%;
+}
+
+/* ===== SERVIÇOS ===== */
+.servicos {
+  background-color: #fff;
+  color: #232224;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 54px 14px;
+}
+
+.servicos-conteudo h2 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 38px;
+  margin-bottom: 14px;
+}
+
+.servicos-conteudo p {
+  line-height: 150%;
+  margin-bottom: 14px;
+  text-align: center;
+  max-width: 780px;
+}
+
+.cortes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 0 44px 34px 44px;
+}
+
+.corte {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 -1px 17px -4px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.corte img {
+  width: 100%;
+  max-width: 254px;
+  transition: transform 0.2s;
+}
+
+.corte img:hover {
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.corte-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 14px;
+  background-color: #fff;
+  z-index: 99;
+}
+
+.corte-preco {
+  color: #fff;
+  background-color: #d94140;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* ===== RODAPÉ ===== */
+.rodape {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 54px 0;
+  gap: 24px;
+  color: #fff;
+}
+
+.rodape-icones {
+  display: flex;
+  gap: 8px;
+}
+
+/* ===== BOTÃO FIXO DO WHATSAPP ===== */
+.botao-whatsapp {
+  position: fixed;
+  bottom: 14px;
+  right: 24px;
+  z-index: 99;
+}
+
+.botao-whatsapp img {
+  max-width: 74px;
+  transition: transform 0.4s;
+}
+
+.botao-whatsapp img:hover {
+  transform: scale(1.1);
+}
+
+.botao-whatsapp .dica-texto {
+  visibility: hidden;
+  position: absolute;
+  width: 120px;
+  top: 8px;
+  left: -144px;
+  padding: 6px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #232224;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.botao-whatsapp:hover .dica-texto,
+.botao-whatsapp:focus-visible .dica-texto {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+/* Tablets e celulares (até 768px) */
+@media screen and (max-width: 768px) {
+  .cabecalho-conteudo {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cabecalho-conteudo i {
+    margin-top: 16px;
+    font-size: 34px;
+  }
+
+  .cabecalho-logo img {
+    width: 160px;
+    margin-top: 46px;
+  }
+
+  .cabecalho-botao {
+    display: none;
+  }
+
+  .destaque {
+    min-height: 60vh;
+  }
+
+  .destaque h1 {
+    font-size: 34px;
+    padding: 0 14px;
+    width: 100%;
+  }
+
+  .destaque p {
+    font-size: 14px;
+  }
+
+  .sobre-conteudo {
+    flex-direction: column;
+  }
+
+  .cortes {
+    flex-direction: column;
+  }
+
+  .corte img {
+    max-width: 740px;
+  }
+
+  .botao-whatsapp img {
+    max-width: 64px;
+  }
+}
+
+/* Celulares (até 480px) */
+@media screen and (max-width: 480px) {
+  .destaque h1 {
+    font-size: 24px;
+  }
+}
