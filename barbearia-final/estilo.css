@@ -234,7 +234,7 @@ header {
   max-width: 780px;
 }
 
-.cortes {
+.costuras {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -242,7 +242,7 @@ header {
   padding: 0 44px 34px 44px;
 }
 
-.corte {
+.costura {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -252,18 +252,18 @@ header {
   overflow: hidden;
 }
 
-.corte img {
+.costura img {
   width: 100%;
   max-width: 254px;
   transition: transform 0.2s;
 }
 
-.corte img:hover {
+.costura img:hover {
   transform: scale(1.05);
   z-index: 1;
 }
 
-.corte-info {
+.servicos-info {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -272,11 +272,14 @@ header {
   z-index: 99;
 }
 
-.corte-preco {
+.ajustes-preco {
   color: #fff;
   background-color: #d94140;
   padding: 4px 8px;
   border-radius: 4px;
+  a {
+    color: #fff;
+  }
 }
 
 /* ===== RODAPÉ ===== */
@@ -376,11 +379,11 @@ header {
     flex-direction: column;
   }
 
-  .cortes {
+  .costuras {
     flex-direction: column;
   }
 
-  .corte img {
+  .costura img {
     max-width: 740px;
   }
 
