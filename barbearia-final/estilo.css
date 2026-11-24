@@ -82,7 +82,7 @@ a:focus-visible {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-image: linear-gradient(to bottom, #06121e1a, #07121D), url("imagem/fundo_principal.svg");
+  background-image: linear-gradient(to bottom, #06121e1a, #07121D), url("imagem/fundo-principal.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 0;
